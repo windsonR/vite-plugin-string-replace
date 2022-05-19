@@ -1,0 +1,25 @@
+{
+  "name": "vite-plugin-string-replace",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Windson",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Windson1806/vite-plugin-string-replace.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Windson1806/vite-plugin-string-replace/issues"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.14",
+    "typescript": "^4.1.2",
+    "vite": "^2.0.0"
+  },
+  "files": [
+    "src/index.ts",
+    "src/index.js",
+    "src/index.js.map",
+    "src/index.d.ts"
+  ]
+}
