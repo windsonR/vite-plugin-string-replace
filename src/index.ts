@@ -7,7 +7,14 @@ export type Option = {
    * string will default to be global
    */
   search: RegExp | string,
+  /**
+   * use replace to replace the search result
+   */
   replace: string,
+  /**
+   * if set fileName,search and replace will only occur in this file
+   */
+  fileName?: string,
 }
 
 export default (options: Array<Option> = []): Plugin => {
@@ -19,14 +26,17 @@ export default (options: Array<Option> = []): Plugin => {
       }
       let result = code
       options.forEach(option=>{
-        const {search, replace} = option
+        const {search, replace, fileName} = option
+        if (fileName && id.indexOf(fileName) <= 0) {
+          return
+        }
         if (search instanceof RegExp) {
           result = result.replace(search, replace)
         } else {
           result = result.replaceAll(search, replace)
         }
       })
-      return code
+      return result
     }
   }
 }
