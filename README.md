@@ -24,6 +24,11 @@ defineConfig({
                 search: /a{5,}/g, // you can use RegEXP to search in content
                 replace: 'bbbbb', // replace search string with this
             },
+           {
+              fileName: 'aaa.txt', // if fileName set, this rule will only execute in this file.
+              search: /a{5,}/g,
+              replace: 'bbbbb',
+           },
         ])
     ]
 })
