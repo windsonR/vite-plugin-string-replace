@@ -1,42 +1,43 @@
-import type {Plugin,} from 'vite'
-import type {TransformResult} from 'rollup'
+import type { Plugin, } from 'vite'
+import type { TransformResult } from 'rollup'
+import MagicString from 'magic-string'
+import { CACHED_REPLACE_OPTIONS, generateReplacementMap, OptionWithName, Option, } from './utils'
 
-export type Option = {
-  /**
-   * RegExp need to be global
-   * string will default to be global
-   */
-  search: RegExp | string,
-  /**
-   * use replace to replace the search result
-   */
-  replace: string,
-  /**
-   * if set fileName,search and replace will only occur in this file
-   */
-  fileName?: string,
-}
-
-export default (options: Array<Option> = []): Plugin => {
+export default (options: Array<OptionWithName> = []): Plugin => {
+  generateReplacementMap(options)
   return {
     name: 'vite-plugin-string-replace',
     async transform(code: string, id: string): Promise<TransformResult> {
-      if (options.length === 0) {
-        return code
+      if (CACHED_REPLACE_OPTIONS.length() === 0) {
+        return null
       }
-      let result = code
-      options.forEach(option=>{
-        const {search, replace, fileName} = option
-        if (fileName && id.indexOf(fileName) <= 0) {
-          return
-        }
-        if (search instanceof RegExp) {
-          result = result.replace(search, replace)
-        } else {
-          result = result.replaceAll(search, replace)
-        }
+      const ms = new MagicString(code)
+      // 1. replace in specify file
+      const replacementSpecifyFiles: Array<Option> = []
+      const specifyFiles = CACHED_REPLACE_OPTIONS.files().filter(k => {
+        return new RegExp(k).test(id);
       })
-      return result
+      specifyFiles.forEach(k => {
+        replacementSpecifyFiles.push(...(CACHED_REPLACE_OPTIONS.get(k) ?? []))
+      })
+      // 2. replace in all(.*) file
+      replacementSpecifyFiles.push(...CACHED_REPLACE_OPTIONS.defaultFile())
+      // 3. do replace
+      replacementSpecifyFiles.forEach(({ search, replace }) => {
+        ms.replaceAll(new RegExp(search, 'g'), replace)
+      })
+      // if string has been changed, then return map, else return null
+      if (ms.hasChanged()) {
+        const result = {
+          code: ms.toString(),
+          map: ms.generateMap({
+            file: id,
+            includeContent: true,
+          })
+        }
+        return result
+      }
+      return null
     }
   }
 }

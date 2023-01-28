@@ -1,0 +1,7 @@
+console.log('#AAAAA#')
+console.log('#BBBBB#')
+console.log('#CCCCC#')
+console.log('#DDDDD#')
+console.log('#EEEEE#')
+console.log('#FFFFF#')
+console.log('#GGGGG#')
