@@ -7,6 +7,7 @@ export default (options: Array<OptionWithName> = []): Plugin => {
   generateReplacementMap(options)
   return {
     name: 'vite-plugin-string-replace',
+    enforce: 'pre',
     async transform(code: string, id: string): Promise<TransformResult> {
       if (CACHED_REPLACE_OPTIONS.length() === 0) {
         return null
