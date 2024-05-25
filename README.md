@@ -64,7 +64,7 @@ If `fileName` is a `RegExp`, it will only match the file which can match the `Re
 
 ### globPattern & globOptions
 
-`1.1.2` add `globby` support, and deprecated fileName options
+`1.1.3` add `globby` support, and deprecated fileName options
 
 When `globPattern` has been set, `fileName` will be ignored!
 

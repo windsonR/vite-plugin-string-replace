@@ -62,7 +62,7 @@ defineConfig({
 
 ### globPattern & globOptions
 
-`1.1.2` 新增了 `globby` 支持, 同时也废弃了 `fileName` 配置
+`1.1.3` 新增了 `globby` 支持, 同时也废弃了 `fileName` 配置
 
 当你设置了`globPattern`,`fileName`选项会被忽略!
 
