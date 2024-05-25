@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-string-replace",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Windson",
   "license": "MIT",
   "main": "./dist/index.js",
@@ -11,11 +11,11 @@
     ".": {
       "require": {
         "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
+        "default": "./dist/index.cjs"
       },
       "import": {
         "types": "./dist/index.d.ts",
-        "default": "./dist/index.mjs"
+        "default": "./dist/index.js"
       }
     }
   },
