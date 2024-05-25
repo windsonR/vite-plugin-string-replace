@@ -31,3 +31,39 @@ defineConfig({
   ]
 })
 ```
+
+## 配置选项
+
+### search
+
+一个 `字符串` 或 `正则表达式`
+
+`search` 配置表示你想要在某个文件中`搜索`的内容
+
+如果 `search` 是 一个 `字符串`, 它就表明在文件中 `搜索全部`.
+
+如果 `search` 是 一个 `正则表达式`, 它就表明在文件中 `搜索` (如果正则表达式包含`g`标识).
+
+### replace
+
+一个 `字符串`
+
+`replace` 配置表示你想要在某个文件中将`搜索`的目标`替代为`的内容
+
+### fileName <已废弃>
+
+一个 `字符串` 或 `正则表达式`
+
+`fileName` 配置表示在 `某个` 文件, 你想要 `搜索` 并且将其`替换`
+
+如果 `fileName` 是 一个 `字符串`, 插件会将其转换为一个 `正则表达式`
+
+如果 `fileName` 是 一个 `正则表达式`, 那么插件将会仅`替换`满足`正则表达式`条件的文件
+
+### globPattern & globOptions
+
+`1.1.2` 新增了 `globby` 支持, 同时也废弃了 `fileName` 配置
+
+当你设置了`globPattern`,`fileName`选项会被忽略!
+
+更多详情请查看 [globby](https://github.com/sindresorhus/globby?tab=readme-ov-file#patterns)的文档

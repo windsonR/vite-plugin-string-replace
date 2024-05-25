@@ -6,7 +6,8 @@ export default defineConfig({
     Replace([
       {
         search: '#AAAAA#',
-        replace: 'aaaaa'
+        replace: 'aaaaa',
+        globPattern: '*/index.ts'
       },
       {
         search: '#BBBBB#',
@@ -31,7 +32,7 @@ export default defineConfig({
         search: '#FFFFF#',
         replace: 'fffff',
         fileName: /index1\.ts/
-      }
+      },
     ])
   ],
   build: {
