@@ -26,12 +26,12 @@ export default (options: Array<OptionWithName> = []): Plugin => {
       replacementSpecifyFiles.push(...CACHED_REPLACE_OPTIONS.defaultFile())
       // 3. do replace
       replacementSpecifyFiles.forEach(({ search, replace }) => {
+        let regex = search as RegExp
         if (typeof search === 'string') {
-          ms.replaceAll(new RegExp(search, 'g'), replace)
-        } else {
-          ms.replaceAll(search, replace)
+          regex = new RegExp(search, 'g')
         }
-
+        // replaceAll's 2nd parameter could be string or function!
+        ms.replaceAll(regex,replace)
       })
       // if string has been changed, then return map, else return null
       if (ms.hasChanged()) {
