@@ -14,6 +14,14 @@ export default defineConfig({
         replace: 'bbbbb'
       },
       {
+        search: '#ABCD#',
+        // replace could be a function,
+        replace: ( v,index,fullCode)=>{
+          console.log(v,index, fullCode);
+          return '测试 replace 函数';
+        }
+      },
+      {
         search: '#CCCCC#',
         replace: 'ccccc',
         fileName: /index\.ts/
