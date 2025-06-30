@@ -1,6 +1,7 @@
 import type {Plugin,} from 'vite'
 import MagicString from 'magic-string'
 import {CACHED_REPLACE_OPTIONS, generateReplacementMap, Option, OptionWithName,} from './utils'
+import escapeStringRegexp from 'escape-string-regexp';
 
 export default (options: Array<OptionWithName> = []): Plugin => {
   return {
@@ -28,7 +29,7 @@ export default (options: Array<OptionWithName> = []): Plugin => {
       replacementSpecifyFiles.forEach(({ search, replace }) => {
         let regex = search as RegExp
         if (typeof search === 'string') {
-          regex = new RegExp(search, 'g')
+          regex = new RegExp(escapeStringRegexp(search), 'g')
         }
         // replaceAll's 2nd parameter could be string or function!
         ms.replaceAll(regex,replace)
