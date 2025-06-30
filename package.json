@@ -1,10 +1,10 @@
 {
   "name": "vite-plugin-string-replace",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "author": "Windson",
   "license": "MIT",
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
   "exports": {
